@@ -1,0 +1,21 @@
+version: '1.0.0'
+services:
+  web_server:
+    image: httpd:alpine3.20
+    #network_mode: host
+    ports:
+      - 80:80
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    #network_mode: host
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:rw
+    ports:
+      - 9090:9090
+  grafana:
+    image: grafana/grafana
+    #network_mode: host
+    container_name: grafana
+    ports:
+      - 3000:3000
